@@ -1,20 +1,28 @@
+import Image from "next/image";
+
 interface CellProps {
   type: CellType;
   index: number;
-  playerPos: number;
+  playersPositions: number[];
 }
 
-const Cell: React.FC<CellProps> = ({type, index, playerPos}) => {
+interface PlayerIconProps {
+  player: number;
+}
+
+const Cell: React.FC<CellProps> = ({type, index, playersPositions}) => {
   return <div className={"cell " + type} data-index={index}>
-    {playerPos === index
-      ? <PlayerIcon />
+    {playersPositions.includes(index)
+      ? <PlayerIcon player={playersPositions.indexOf(index)+1} />
       : null
     }
   </div>
 }
 
-const PlayerIcon = () => {
-  return <div className="player" />
+const PlayerIcon: React.FC<PlayerIconProps> = ({player}) => {
+  return <div className="player">
+    <Image src={"/assets/cells/player-icon-" + player + ".png"} alt="player" width={35} height={35} />
+  </div>
 };
 
 export default Cell;
