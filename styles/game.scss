@@ -44,9 +44,10 @@ main {
 .chat {
 	position: fixed;
 	height: 100%;
-	width: 400px;
+	width: 15vw;
 	right: 0px;
 	top: 0px;
+  overflow-y: auto;
 }
 
 .msg_area {

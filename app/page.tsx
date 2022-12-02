@@ -518,14 +518,7 @@ export default function Page() {
         			<p className="msg_body">Hein ?</p>
         		</div>
         	</div>
-        	<div className="txt_area">
-        		<button type="button" className="send-button">
-        			Envoyer
-        		</button>
-        		<textarea autoComplete="on">
-        			Le chat
-       			</textarea>
-        	</div>
+        	
         </div>
     </main>
 }
