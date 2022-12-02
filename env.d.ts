@@ -28,3 +28,14 @@ interface Question {
   goodAnswer: "A" | "B" | "C";
   explanation?: string;
 }
+
+interface Message {
+  content: string;
+  date: import('firebase/firestore').Timestamp;
+  userTag: string;
+}
+
+interface AuthContextValue {
+  loading: boolean;
+  user: import("firebase/auth").User | null;
+}

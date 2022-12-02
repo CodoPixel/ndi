@@ -2,7 +2,7 @@
 
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Cell from "../components/Cell";
 import ALL_EVENTS from "../data/uselessEvents";
 import getRandomInt from "../utils/getRandomInt";
@@ -10,8 +10,12 @@ import { getSwal } from "../utils/getSwal";
 import getDeepCopyOf from "../utils/getDeepCopyOf";
 import QUESTIONS from "../data/questions";
 import Image from "next/image";
+import { signInAnonymously } from "firebase/auth";
+import { auth, firestore } from "../fireconfig/firebase";
+import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 
 export default function Page() {
+    const [allMessages, setAllMessages] = useState<Message[]>([]);
     const [allPositions, setAllPositions] = useState<number[]>([0,0,0]);
     const [allUselessEvents, setAllUselessEvents] = useState<UselessEvent[]>(ALL_EVENTS);
     const [allQuestions, setAllQuestions] = useState<Question[]>(QUESTIONS);
@@ -118,6 +122,21 @@ export default function Page() {
             "trash",
             "kitten"
         ];
+    }, []);
+
+    useEffect(() => {
+        (async() => {
+            await signInAnonymously(auth);
+            const chatCol = collection(firestore, "chat");
+            const q = query(chatCol, orderBy("date", "desc"), limit(10));
+            const snap = await getDocs(q);
+            const m: Message[] = [];
+            snap.forEach((doc) => {
+                const data = doc.data() as Message;
+                m.push(data);
+            });
+            setAllMessages(m);
+        })();
     }, []);
 
     const handlePlay = async () => {
@@ -501,22 +520,12 @@ export default function Page() {
         </div>
         <div className="chat">
         	<div className="msg_area">
-        		<div className="msg">
-        			<p className="identite"><span className="author">Fabien Delecroix</span><span className="date">01/01/1942</span></p>
-        			<p className="msg_body">Salut bg</p>
-        		</div>
-        		<div className="msg">
-        			<p className="identite"><span className="author">Yann Secq</span><span className="date">01/01/1943</span></p>
-        			<p className="msg_body">Salut turbo bg</p>
-        		</div>
-        		<div className="msg">
-        			<p className="identite"><span className="author">Fabien Delecroix</span><span className="date">01/01/1943</span></p>
-        			<p className="msg_body">1 an le vu</p>
-        		</div>
-        		<div className="msg">
-        			<p className="identite"><span className="author">Yann Secq</span><span className="date">01/01/2042</span></p>
-        			<p className="msg_body">Hein ?</p>
-        		</div>
+                {allMessages.map((m,i) => 
+                    <div key={i} className="msg">
+                        <p className="identite"><span className="author">{m.userTag}</span><span className="date">{m.date.toDate().toLocaleDateString()}</span></p>
+                        <p className="msg_body">{m.content.trim()}</p>
+                    </div>
+                )}
         	</div>
         	
         </div>
