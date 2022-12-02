@@ -290,5 +290,33 @@ export default function Page() {
                 <FontAwesomeIcon icon={faPlay} />
             </button>
         </div>
+        <div className="chat">
+        	<div className="msg_area">
+        		<div className="msg">
+        			<p className="identite"><span className="author">Fabien Delecroix</span><span className="date">01/01/1942</span></p>
+        			<p className="msg_body">Salut bg</p>
+        		</div>
+        		<div className="msg">
+        			<p className="identite"><span className="author">Yann Secq</span><span className="date">01/01/1943</span></p>
+        			<p className="msg_body">Salut turbo bg</p>
+        		</div>
+        		<div className="msg">
+        			<p className="identite"><span className="author">Fabien Delecroix</span><span className="date">01/01/1943</span></p>
+        			<p className="msg_body">1 an le vu</p>
+        		</div>
+        		<div className="msg">
+        			<p className="identite"><span className="author">Yann Secq</span><span className="date">01/01/2042</span></p>
+        			<p className="msg_body">Hein ?</p>
+        		</div>
+        	</div>
+        	<div className="txt_area">
+        		<button type="button" className="send-button">
+        			Envoyer
+        		</button>
+        		<textarea autoComplete="on">
+        			Le chat
+       			</textarea>
+        	</div>
+        </div>
     </main>
 }
