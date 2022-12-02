@@ -2,7 +2,7 @@
 
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Cell from "../components/Cell";
 import ALL_EVENTS from "../data/uselessEvents";
 import getRandomInt from "../utils/getRandomInt";
@@ -18,7 +18,6 @@ export default function Page() {
     const [STIChance, setSTIChance] = useState<number[]>([0.6,0.6,0.6]);
     const [hasSTI, setHasSTI] = useState<boolean[]>([false, false, false]);
     const [condomsCount, setCondomnsCount] = useState<number[]>([0,0,0]);
-    const [steps, setSteps] = useState<number[][]>([[0],[0],[0]]);
     const [finishedPlayers, setFinishedPlayers] = useState<number[]>([]);
     const [previousDice, setPreviousDice] = useState<number>(0); // of the real player only
     const swal = getSwal();
@@ -70,7 +69,7 @@ export default function Page() {
             "surprise",
             "treatment",
             "surprise",
-            "time-travel",
+            "treatment",
             "koit-toilet",
             
             "female-condom",
@@ -96,7 +95,7 @@ export default function Page() {
             "car-koit",
             "surprise",
             "death",
-            "time-travel",
+            "male-condom",
 
             "male-condom",
             "surprise",
@@ -141,7 +140,6 @@ export default function Page() {
                     setCondomnsCount(c => { c[0] = 0; return c; });
                     setAllQuestions(QUESTIONS);
                     setAllUselessEvents(ALL_EVENTS);
-                    setSteps(c => { c[0] = [0]; return c; });
                 });
                 move = false;
                 break;
@@ -246,23 +244,6 @@ export default function Page() {
                     });
                 }
                 break;
-            case "time-travel":
-                setSteps(currentSteps => {
-                    setAllPositions(currentPositions => {
-                        currentPositions[0] = currentSteps[0][currentSteps.length - 2];
-                        return getDeepCopyOf(currentPositions);
-                    });
-                    if (currentSteps.length === 2) {
-                        return currentSteps;
-                    }
-                    currentSteps.pop();
-                    return getDeepCopyOf(currentSteps);
-                });
-                swal.fire({
-                    title: "Voyage dans le temps !",
-                    text: "Vous avez été renvoyé dans le passé !"
-                });
-                move = false;
             case "kitten":
                 if (hasSTI[0]) {
                     swal.fire({
@@ -279,7 +260,6 @@ export default function Page() {
                 console.error("you forgot a case, idiot");
         }
         if (move) {
-            setSteps(c => { c[0] = [...c[0], allPositions[0] + randomInteger]; return c; });
             setAllPositions(currentPositions => {
                 currentPositions[0] += randomInteger;
                 return getDeepCopyOf(currentPositions);
@@ -303,7 +283,6 @@ export default function Page() {
                 setCondomnsCount(c => { c[player] = 0; return c; });
                 setAllQuestions(QUESTIONS);
                 setAllUselessEvents(ALL_EVENTS);
-                setSteps(c => { c[player] = [0]; return c; });
                 return;
             case "car-koit":
             case "koit-toilet":
@@ -337,28 +316,10 @@ export default function Page() {
             case "female-condom":
                 setCondomnsCount(c => { c[player] += 1; return c; });
                 break;
-            case "time-travel":
-                setSteps(currentSteps => {
-                    setAllPositions(currentPositions => {
-                        currentPositions[player] = currentSteps[0][currentSteps.length - 2];
-                        return getDeepCopyOf(currentPositions);
-                    });
-                    if (currentSteps.length === 2) {
-                        return currentSteps;
-                    }
-                    currentSteps.pop();
-                    return getDeepCopyOf(currentSteps);
-                });
-                swal.fire({
-                    title: "Voyage dans le temps !",
-                    text: "Vous avez été renvoyé dans le passé !"
-                });
-                return;
             case "kitten":
                 setFinishedPlayers(c => ([...c, player]));
                 break;
         }
-        setSteps(c => { c[player] = [...c[player], cellIndex]; return c; });
         setAllPositions(currentPositions => { currentPositions[player] = cellIndex; return getDeepCopyOf(currentPositions); });
     }
 
@@ -367,7 +328,7 @@ export default function Page() {
             <Cell type="dick" index={0} playersPositions={allPositions} />
             <div />
             <Cell type="koit-toilet" index={44} playersPositions={allPositions} />
-            <Cell type="time-travel" index={43} playersPositions={allPositions} />
+            <Cell type="treatment" index={43} playersPositions={allPositions} />
             <Cell type="surprise" index={42} playersPositions={allPositions} />
             <Cell type="treatment" index={41} playersPositions={allPositions} />
             <Cell type="surprise" index={40} playersPositions={allPositions} />
@@ -408,7 +369,7 @@ export default function Page() {
             <Cell type="nothing-interesting" index={69} playersPositions={allPositions} />
             <Cell type="surprise" index={68} playersPositions={allPositions} />
             <Cell type="male-condom" index={67} playersPositions={allPositions} />
-            <Cell type="time-travel" index={66} playersPositions={allPositions} />
+            <Cell type="male-condom" index={66} playersPositions={allPositions} />
             <div />
             <Cell type="surprise" index={30} playersPositions={allPositions} />
 
