@@ -19,12 +19,14 @@ main {
 
 .controls {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding-top: 10px;
   margin-left: $margin-between-gameboard-and-controls;
 }
 
 .play-button {
+  display: block;
   width: $play-button-size;
   height: $play-button-size;
   min-width: $play-button-size;
@@ -36,6 +38,7 @@ main {
   cursor: pointer;
   color: #444;
   font-size: 1.1em;
+  margin-bottom: 20px;
 }
 
 .chat {
@@ -81,22 +84,4 @@ main {
 .send-button {
 	border-radius: 10%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

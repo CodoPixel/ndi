@@ -1,6 +1,7 @@
+declare module "sweetalert2/dist/sweetalert2";
+
 type CellType =
   "surprise" |
-  "time-travel" |
   "bed" |
   "car-koit" |
   "death" |
@@ -11,9 +12,19 @@ type CellType =
   "nothing-interesting" |
   "trash" |
   "dick" |
+  "treatment" |
   "kitten";
 
 interface UselessEvent {
   title: string;
   content: string;
+}
+
+interface Question {
+  text: string;
+  answerA: string;
+  answerB: string;
+  answerC?: string;
+  goodAnswer: "A" | "B" | "C";
+  explanation?: string;
 }

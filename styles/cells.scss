@@ -13,13 +13,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
-.player {
-  background-color: red;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
+.cell .player:nth-child(1) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cell .player:nth-child(2) {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+}
+
+.cell .player:nth-child(3) {
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
 }
 
 .surprise {
@@ -64,6 +79,10 @@
 
 .trash {
   background-image: url(/assets/cells/trash.png);
+}
+
+.treatment {
+  background-image: url(/assets/cells/treatment.png);
 }
 
 .dick {
