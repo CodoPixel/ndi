@@ -40,3 +40,48 @@ main {
   font-size: 1.1em;
   margin-bottom: 20px;
 }
+
+.chat {
+	position: fixed;
+	height: 100%;
+	width: 400px;
+	right: 0px;
+	top: 0px;
+}
+
+.msg_area {
+	height: 85%;
+	width: 100%;
+	border: 1px solid grey;
+}
+
+.msg {
+	background-color: #fcbfcb;
+}
+
+.date {
+	margin-left: 10px;
+	font-style: italic;
+	font-weight: 1;
+}
+
+.msg_body {
+	margin-left: 15px;
+}
+
+.txt_area {
+	display: grid;
+	height: 15%;
+	grid-template-columns: 2fr 1fr;
+}
+
+.txt_area>textarea {
+	order: -1;
+	height: 100%;
+	width: 100%;
+}
+
+.send-button {
+	border-radius: 10%;
+}
+
