@@ -1,0 +1,75 @@
+@import "var.scss";
+
+.cell {
+  width: $cell-width;
+  height: $cell-height;
+  min-width: $cell-width;
+  min-height: $cell-height;
+  max-width: $cell-width;
+  max-height: $cell-height;
+  background-color: lightgray;
+  box-sizing: border-box;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player {
+  background-color: red;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+
+.surprise {
+  background-image: url(/assets/cells/surprise.png);
+}
+
+.bed {
+  background-image: url(/assets/cells/bed.png);
+}
+
+.car-koit {
+  background-image: url(/assets/cells/car-koit.png);
+}
+
+.death {
+  background-image: url(/assets/cells/death.png);
+}
+
+.female-condom {
+  background-image: url(/assets/cells/female-condom.png);
+}
+
+.koit-toilet {
+  background-image: url(/assets/cells/koit-toilet.png);
+}
+
+.koit {
+  background-image: url(/assets/cells/koit.png);
+}
+
+.male-condom {
+  background-image: url(/assets/cells/male-condom.png);
+}
+
+.nothing-interesting {
+  background-image: url(/assets/cells/nothing-interesting.png);
+}
+
+.time-travel {
+  background-image: url(/assets/cells/time-travel.png);
+}
+
+.trash {
+  background-image: url(/assets/cells/trash.png);
+}
+
+.dick {
+  background-image: url(/assets/cells/dick.png);
+}
+
+.kitten {
+  background-image: url(/assets/cells/kitten.png);
+}

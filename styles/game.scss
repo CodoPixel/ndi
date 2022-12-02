@@ -1,0 +1,39 @@
+@import "var.scss";
+
+main {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: min-content calc(#{$play-button-size} + #{$margin-between-gameboard-and-controls});
+  grid-template-rows: min-content;
+  padding-top: 5%;
+  padding-left: 5%;
+}
+
+.gameboard {
+  display: grid;
+  grid-template-columns: repeat(15, $cell-width);
+  grid-template-rows: repeat(10, $cell-height);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  margin-left: $margin-between-gameboard-and-controls;
+}
+
+.play-button {
+  width: $play-button-size;
+  height: $play-button-size;
+  min-width: $play-button-size;
+  min-height: $play-button-size;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  color: #444;
+  font-size: 1.1em;
+}
